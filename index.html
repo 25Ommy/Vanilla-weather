@@ -14,30 +14,43 @@
     <title>Vannila Weather App</title>
   </head>
   <body>
-    <div class="border">
-      <form id="search-form">
-        <input class="search-input"id="search-input"stype"search"
-        placeholder="Enter the city.."required class="search-form-input"/>
-        <input type="submit" value="search" class="search-button" />
-      </form>
-      <h1 class="current-city" id="current-city">Lisbon</h1>
-      <div class="current-weather">
-        <h2 class="current-details">
-          <span id="current-date">Sartuday 14:24</span>,moderate rain <br />
-          Humidity:<strong class="number-color">56%</strong>,Wind:<strong
-            class="number-color"
-            >5.6km/h</strong
-          >
-        </h2>
-        <h3 class="current-temperature">
-          <span class="current-temperature-icon">☀️</span>
-          <span class="current-temperature-value" id="temperature">24</span>
-          <span class="current-temperature-unit">°C</span>
-        </h3>
-      </div>
-      <footer class="current-details">
-        This project was coded by <a href="#">Ommy Molele</a> and is
-        <a href="#">on GitHub</a> and <a href="#">hosted on Netlify.</a>
+    <div class="weather-app">
+      <header>
+        <form id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            class="search-input"
+            id="search-input"
+          />
+          <input type="submit" value="Search" class="search-button" />
+        </form>
+      </header>
+      <main>
+        <div class="current-weather">
+          <div>
+            <h1 class="current-city" id="current-city">Paris</h1>
+            <p class="current-details">
+              <span id="current-date"></span>,
+              <span id="description">moderate rain</span> <br />
+              Humidity: <strong>87%</strong>, Wind: <strong>7.2km/h</strong>
+            </p>
+          </div>
+          <div class="current-temperature">
+            <span class="current-temperature-icon">☀️</span
+            ><span class="current-temperature-value" id="temperature">24</span
+            ><span class="current-temperature-unit">°C</span>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <p>
+          This project was coded by
+          <a href="#" target="_blank">Ommy Molele</a> and is
+          <a href="#" target="_blank"> on GitHub</a> and
+          <a href="#" target="_blank">hosted on Netlify</a>
+        </p>
       </footer>
     </div>
   </body>
