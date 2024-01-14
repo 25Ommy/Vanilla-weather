@@ -1,18 +1,19 @@
 function getWeather(response) {
+  let iconElement = document.querySelector("#icon");
+  let timeElement = document.querySelector("#current-date");
   let tempElement = document.querySelector("#temperature");
   let temperature = response.data.temperature.current;
   let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
-  let iconElement = document.querySelector("#icon");
-  let timeElement = document.querySelector("#current-time");
+
   let date = new Date(response.data.time * 1000);
 
-  console.log(response.data.condition.description);
   console.log(response);
-  timeElement.innerHTML = `${date.getDay()}${date.getHours()}:${date.getMinutes()}`;
-  iconElement.innerHTML = response.data.condition.icon;
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}"  class="current-temperature-icon"/>`;
+  timeElement.innerHTML = formatDate(date);
+
   windElement.innerHTML = `${response.data.wind.speed}km/h`;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   cityElement.innerHTML = response.data.city;
@@ -36,13 +37,6 @@ function search(event) {
 function formatDate(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
 
   let days = [
     "Sunday",
@@ -55,7 +49,10 @@ function formatDate(date) {
   ];
 
   let day = days[date.getDay()];
-  return `${day} ,${hours}:${minutes}`;
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  return `${day} ${hours}:${minutes}`;
 }
 
 let searchForm = document.querySelector("#search-form");
