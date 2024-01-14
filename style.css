@@ -53,7 +53,7 @@ body {
 .current-temperature-unit {
   font-size: 38px;
   position: relative;
-  top: -80px;
+  top: -40px;
 }
 .current-temperature {
   font-size: 48px;
