@@ -46,12 +46,12 @@ body {
   display: inline-block;
 }
 .current-temperature-value {
-  font-size: 150px;
+  font-size: 100px;
 
   font-weight: bold;
 }
 .current-temperature-unit {
-  font-size: 48px;
+  font-size: 38px;
   position: relative;
   top: -80px;
 }
