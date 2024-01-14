@@ -11,7 +11,7 @@ function getWeather(response) {
   let date = new Date(response.data.time * 1000);
 
   console.log(response);
-  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}"  class="current-temperature-icon"/>`;
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}"  class="current-temperature-icon" width="70"/>`;
   timeElement.innerHTML = formatDate(date);
 
   windElement.innerHTML = `${response.data.wind.speed}km/h`;
