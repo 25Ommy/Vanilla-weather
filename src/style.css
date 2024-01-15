@@ -9,7 +9,7 @@ body {
   margin: 60px auto;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 10px 5px 5px rgb(55, 53, 53);
+  box-shadow: 15px 8px 8px rgb(33, 31, 31);
 }
 .search-input {
   background-color: #2f393a;
@@ -42,10 +42,10 @@ body {
   color: red;
 }
 .current-temperature-icon {
-  padding: 5px;
-  margin: auto;
-  margin-bottom: -15px;
-  display: inline-block;
+  width: 120px;
+  height: 120px;
+  display: inline;
+  margin-bottom: -30px;
 }
 .current-temperature-value {
   font-size: 80px;
@@ -75,12 +75,23 @@ footer {
 .weather-forecast {
   display: flex;
   justify-content: space-between;
+  margin-top: 80px;
 }
 .weather-forecast-day {
   font-weight: 600;
+  margin-left: 30px;
+}
+.weather-forecast-temperature {
+  margin-left: 29px;
+}
+.weather-forecast-icon {
+  width: 60px;
+  height: 38px;
+  display: inline-block;
+  margin: 0 auto;
 }
 strong {
-  color: rgb(141, 80, 5);
+  color: rgb(72, 41, 2);
 }
 p {
   font-size: 16px;

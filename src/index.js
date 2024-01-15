@@ -21,31 +21,6 @@ function getWeather(response) {
   tempElement.innerHTML = Math.round(temperature);
   getForecast(response.data.city);
 }
-
-function searchCity(city) {
-  let apiKey = "8c8894fb74b2o09027cb643c5t33b24a";
-
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(getWeather);
-}
-function search(event) {
-  event.preventDefault();
-  let searchInputElement = document.querySelector("#search-input");
-  searchCity(searchInputElement.value);
-}
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
-searchCity("Lisbon");
-
-function getForecast(city) {
-  let apiKey = "8c8894fb74b2o09027cb643c5t33b24a";
-  let apiUrl =
-    "https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric";
-  console.log(city);
-}
-
 function formatDate(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -69,25 +44,64 @@ function formatDate(date) {
   }
   return `${weekDay} ${hours}:${minutes}`;
 }
+function searchCity(city) {
+  let apiKey = "8c8894fb74b2o09027cb643c5t33b24a";
 
-function displayForeCast() {
-  let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(getWeather);
+}
+function search(event) {
+  event.preventDefault();
+  let searchInputElement = document.querySelector("#search-input");
+  searchCity(searchInputElement.value);
+}
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", search);
+searchCity("Lisbon");
+
+function getForecast(city) {
+  let apiKey = "8c8894fb74b2o09027cb643c5t33b24a";
+
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForeCast);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+function displayForeCast(response) {
+  console.log(response.data);
+
   let forecastHtml = "";
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `<div>
-            <span class="weather-forecast-day">${day}</span> <br />
 
-            <span class="weather-forecast-icon">☁️</span> <br />
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `<div>
+            <span class="weather-forecast-day">${formatDay(
+              day.time
+            )}</span> <br />
+
+            <span class="weather-forecast-icon"><img src="${
+              day.condition.icon_url
+            }"/></span> <br />
             <span
               ><strong class="weather-forecast-temperature"
-                >19° 20°</strong
+                >   <span class="weather-forecast-temperature-max"> ${Math.round(
+                  day.temperature.maximum
+                )}°</span> 
+                <span class="weather-forecast-temperature-min"> ${Math.round(
+                  day.temperature.minimum
+                )} °</span></strong
               ></span
             >
           </div>`;
+    }
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
-displayForeCast();
