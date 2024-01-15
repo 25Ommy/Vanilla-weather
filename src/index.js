@@ -33,6 +33,9 @@ function search(event) {
   let searchInputElement = document.querySelector("#search-input");
   searchCity(searchInputElement.value);
 }
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", search);
+searchCity("Lisbon");
 
 function formatDate(date) {
   let hours = date.getHours();
@@ -48,16 +51,34 @@ function formatDate(date) {
     "Saturday",
   ];
 
-  let day = days[date.getDay()];
+  let weekDay = days[date.getDay()];
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
   if (hours > 10) {
     hours = `${hours}`;
   }
-  return `${day} ${hours}:${minutes}`;
+  return `${weekDay} ${hours}:${minutes}`;
 }
 
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
-searchCity("Lisbon");
+function displayForeCast() {
+  let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+  let forecastHtml = "";
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `<div>
+            <span class="weather-forecast-day">${day}</span> <br />
+
+            <span class="weather-forecast-icon">☁️</span> <br />
+            <span
+              ><strong class="weather-forecast-temperature"
+                >19° 20°</strong
+              ></span
+            >
+          </div>`;
+  });
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
+displayForeCast();
