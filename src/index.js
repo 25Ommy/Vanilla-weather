@@ -35,14 +35,14 @@ function formatDate(date) {
     "Saturday",
   ];
 
-  let weekDay = days[date.getDay()];
+  let day = days[date.getDay()];
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
   if (hours > 10) {
     hours = `${hours}`;
   }
-  return `${weekDay} ${hours}:${minutes}`;
+  return `${day} ${hours}:${minutes}`;
 }
 function searchCity(city) {
   let apiKey = "8c8894fb74b2o09027cb643c5t33b24a";
