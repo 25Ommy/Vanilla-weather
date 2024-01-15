@@ -19,6 +19,7 @@ function getWeather(response) {
   cityElement.innerHTML = response.data.city;
   descriptionElement.innerHTML = response.data.condition.description;
   tempElement.innerHTML = Math.round(temperature);
+  getForecast(response.data.city);
 }
 
 function searchCity(city) {
@@ -33,9 +34,17 @@ function search(event) {
   let searchInputElement = document.querySelector("#search-input");
   searchCity(searchInputElement.value);
 }
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 searchCity("Lisbon");
+
+function getForecast(city) {
+  let apiKey = "8c8894fb74b2o09027cb643c5t33b24a";
+  let apiUrl =
+    "https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric";
+  console.log(city);
+}
 
 function formatDate(date) {
   let hours = date.getHours();
