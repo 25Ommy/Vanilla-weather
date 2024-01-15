@@ -10,15 +10,13 @@ function getWeather(response) {
 
   let date = new Date(response.data.time * 1000);
 
-  console.log(response);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}"  class="current-temperature-icon" width="70"/>`;
   timeElement.innerHTML = formatDate(date);
-
-  windElement.innerHTML = `${response.data.wind.speed}km/h`;
-  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  tempElement.innerHTML = Math.round(temperature);
   cityElement.innerHTML = response.data.city;
   descriptionElement.innerHTML = response.data.condition.description;
-  tempElement.innerHTML = Math.round(temperature);
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  windElement.innerHTML = `${response.data.wind.speed}km/h`;
   getForecast(response.data.city);
 }
 function formatDate(date) {
@@ -73,8 +71,6 @@ function formatDay(timestamp) {
   return days[date.getDay()];
 }
 function displayForeCast(response) {
-  console.log(response.data);
-
   let forecastHtml = "";
 
   response.data.daily.forEach(function (day, index) {
