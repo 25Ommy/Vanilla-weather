@@ -5,6 +5,10 @@ body {
 }
 .weather-app {
   background-image: url("Wallpaper.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
   max-width: 600px;
   margin: 60px auto;
   padding: 30px;
